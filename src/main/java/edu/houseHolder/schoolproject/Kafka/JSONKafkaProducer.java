@@ -26,7 +26,7 @@ public class JSONKafkaProducer {
 
         Message<User> message = MessageBuilder
                 .withPayload(data)
-                .setHeader(KafkaHeaders.TOPIC, "user-update-notifications")
+                .setHeader(KafkaHeaders.TOPIC, "user-update-notifications_json")
                 .build();
 
         kafkaTemplate.send(message);

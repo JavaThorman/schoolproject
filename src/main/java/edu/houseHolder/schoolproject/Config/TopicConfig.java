@@ -14,4 +14,10 @@ public class TopicConfig {
         return TopicBuilder.name("user-update-notifications")
                 .build();
     }
+
+    @Bean
+    public NewTopic userJsonTopic() {
+        return TopicBuilder.name("user-update-notifications_json")
+                .build();
+    }
 }
