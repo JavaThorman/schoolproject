@@ -3,7 +3,7 @@ package edu.houseHolder.schoolproject.payload;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "chores") // Replace "users" with your desired collection name
+@Document(collection = "chores")
 public class User {
     @Id
     private String id;
