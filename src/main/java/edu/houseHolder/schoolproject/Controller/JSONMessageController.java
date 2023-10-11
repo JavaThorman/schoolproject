@@ -26,6 +26,7 @@ public class JSONMessageController {
         // Store the JSON message in MongoDB
         mongoDBHandler.storeMessage(user);
 
-        return ResponseEntity.ok("Json message sent to kafka topic and stored in MongoDB");
+        return ResponseEntity.ok("Json message sent to Kafka topic and stored in MongoDB");
     }
+
 }

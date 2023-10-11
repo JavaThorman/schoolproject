@@ -1,30 +1,27 @@
 package edu.houseHolder.schoolproject.Controller;
 
-import edu.houseHolder.schoolproject.Kafka.KafkaProducer;
-
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/kafka")
 public class MessageController {
-    private final KafkaProducer kafkaProducer;
+    private final KafkaTemplate<String, String> kafkaTemplate;
 
-    public MessageController(KafkaProducer kafkaProducer) {
-        this.kafkaProducer = kafkaProducer;
+    public MessageController(KafkaTemplate<String, String> kafkaTemplate) {
+        this.kafkaTemplate = kafkaTemplate;
     }
 
-    @PostMapping("/publish") // Remove the "?" here
-    public ResponseEntity<String> publish(@RequestBody String message) { // Use @RequestBody to read JSON from the request body
+    @PostMapping(path = "/publish", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> publish(@RequestBody String message) {
         try {
-            kafkaProducer.sendMessage(message);
+            kafkaTemplate.send("user_notification_updates_json", message); // Replace "your-topic-name" with your actual topic name
             return ResponseEntity.ok("Message sent to the Topic");
         } catch (Exception e) {
-            // Log the exception for debugging
-            e.printStackTrace();
+            e.printStackTrace(); // Log the exception for debugging
             return ResponseEntity.status(500).body("Internal server error");
         }
     }
 }
-
-

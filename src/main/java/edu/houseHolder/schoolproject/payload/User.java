@@ -1,15 +1,20 @@
 package edu.houseHolder.schoolproject.payload;
 
-public class User {
-    private int id;
-    private String holder; // To suggest the holder of the house.
-    private String notification; // To suggest the notification that is being sent out.
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-    public int getId() {
+@Document(collection = "chores") // Replace "users" with your desired collection name
+public class User {
+    @Id
+    private String id;
+
+    private String holder;
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -37,15 +42,18 @@ public class User {
         this.doer = doer;
     }
 
-    private String doer; // To suggest the person that this houseHold chore is being directed to.
+    private String notification;
+    private String doer;
+
+    // Constructors, getters, setters, and other methods as needed
 
     @Override
     public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", holder='" + holder + '\'' +
-                ", notification='" + notification + '\'' +
-                ", doer='" + doer + '\'' +
+        return
+                "Holder: '" + holder + "',\n" +
+                "Notification: '" + notification + "',\n" +
+                "Doer: '" + doer + "'\n" +
                 '}';
     }
+
 }

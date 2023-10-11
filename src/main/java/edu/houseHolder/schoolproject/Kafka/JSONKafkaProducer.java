@@ -22,12 +22,13 @@ public class JSONKafkaProducer {
 
     public void sendMessage(User data) {
 
-        LOGGER.info(String.format("Message sent ->", data.toString()));
+        LOGGER.info("Message sent -> " + data.toString());
 
         Message<User> message = MessageBuilder
                 .withPayload(data)
-                .setHeader(KafkaHeaders.TOPIC, "user-update-notifications_json")
+                .setHeader(KafkaHeaders.TOPIC, "user_update_notifications_json")
                 .build();
+
 
         kafkaTemplate.send(message);
 

@@ -7,7 +7,7 @@ import org.springframework.kafka.annotation.KafkaListener;
 
 public class JSONKafkaConsumer {
     private static final Logger LOGGER = LoggerFactory.getLogger(JSONKafkaConsumer.class);
-    @KafkaListener(topics = "user-update-notifications", groupId = "myGroup")
+    @KafkaListener(topics = "user_update_notifications_json", groupId = "myGroup")
     public void consume(User user) {
         LOGGER.info(String.format("Json message received -> %", user.toString()));
     }
