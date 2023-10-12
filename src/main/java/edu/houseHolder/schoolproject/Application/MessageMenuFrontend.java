@@ -17,7 +17,8 @@ public class MessageMenuFrontend {
             System.out.println("Menu:");
             System.out.println("1. Send Message");
             System.out.println("2. Read Messages");
-            System.out.println("3. Exit");
+            System.out.println("3. Change Status");
+            System.out.println("4. Exit");
             System.out.print("Enter your choice: ");
 
             int choice = scanner.nextInt();
@@ -31,6 +32,9 @@ public class MessageMenuFrontend {
                     readMessages(backend);
                     break;
                 case 3:
+                    changeStatus(backend);
+                    break;
+                case 4:
                     System.out.println("Exiting the application.");
                     return; // Exit the loop and the application
                 default:
@@ -41,18 +45,28 @@ public class MessageMenuFrontend {
 
     private void sendMessage(MessageMenuBackend backend) {
         System.out.println("Enter message details:");
-        System.out.print("Holder: ");
+        System.out.println("Title: ");
+        String title = scanner.nextLine();
+        System.out.print("Holder: \n");
         String holder = scanner.nextLine();
-        System.out.print("Notification: ");
+        System.out.print("Notification: \n");
         String notification = scanner.nextLine();
-        System.out.print("Doer: ");
+        System.out.print("Doer: \n");
         String doer = scanner.nextLine();
 
-        backend.sendMessage(holder, notification, doer);
+        // You should pass the correct parameters to the sendMessage method
+        backend.sendMessage(title, holder, notification, doer, false);
     }
 
+private void changeStatus(MessageMenuBackend backend) {
+    System.out.println("Enter chore ID: ");
+        int IntegerID = scanner.nextInt();
+
+        String stringID = String.valueOf(IntegerID);
+        backend.changeStatus(stringID);
+}
     private void readMessages(MessageMenuBackend backend) {
-        System.out.println("Reading messages:");
         backend.readMessages();
     }
 }
+
