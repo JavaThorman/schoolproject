@@ -16,8 +16,13 @@ public class Application implements CommandLineRunner {
         this.backend = backend;
     }
 
+
     @Override
     public void run(String... args) {
+        // Initialize a new page in the backend. (my way of getting rid of the Springboot app init text)
+        backend.newPage();
+
+        // Run the frontend, passing the backend as a parameter for interaction.
         frontend.run(backend);
     }
 }

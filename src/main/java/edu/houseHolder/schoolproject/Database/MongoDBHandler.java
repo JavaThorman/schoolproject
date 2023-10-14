@@ -21,7 +21,7 @@ public class MongoDBHandler {
     public void storeMessage(User user) {
         try {
             String newId = generateNewId("chores");
-            user.setId(newId);
+            user.set_id(newId);
 
             // Store the user document in the "chores" collection.
             mongoTemplate.save(user, "chores");

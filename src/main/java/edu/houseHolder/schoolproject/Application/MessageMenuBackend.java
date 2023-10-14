@@ -4,12 +4,10 @@ import edu.houseHolder.schoolproject.Database.MongoDBHandler;
 import edu.houseHolder.schoolproject.Database.UserRepository;
 import edu.houseHolder.schoolproject.Kafka.JSONKafkaProducer;
 import edu.houseHolder.schoolproject.payload.User;
-import org.apache.kafka.common.protocol.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Scanner;
 
 @Service
 public class MessageMenuBackend {
@@ -25,6 +23,7 @@ public class MessageMenuBackend {
         this.mongoDBHandler = mongoDBHandler;
     }
 
+    // Send a message to Kafka and store it in MongoDB
     public void sendMessage(String title, String holder, String notification, String doer, Boolean status) {
         User user = new User();
 
@@ -36,7 +35,6 @@ public class MessageMenuBackend {
         user.setDoer(doer);
         user.setStatus(status);
 
-
         kafkaProducer.sendMessage(user);
 
         // Save the user document in MongoDB
@@ -45,23 +43,23 @@ public class MessageMenuBackend {
         System.out.println("Json message sent to Kafka topic and stored in MongoDB.");
     }
 
+    // Read and display messages from MongoDB
     public void readMessages() {
         System.out.println("Reading messages:");
 
-        // Query and display messages from MongoDB
         List<User> users = userRepository.findAll();
         for (User user : users) {
             System.out.println(user);
         }
     }
 
+    // Change the status of a chore in MongoDB
     public void changeStatus(String id) {
-
-        // Find chore by _id
         mongoDBHandler.changeChoreStatusBy_id(id);
+    }
 
-        // Replace boolean value of false with true (if done)
-
-        // send updates to MongoDB.
+    // Display a new page
+    public void newPage() {
+        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"); // Add more line breaks if needed
     }
 }

@@ -6,7 +6,15 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "chores")
 public class User {
     @Id
-    private String _id;
+    private String _id; // MongoDB document ID
+
+    private String title; // Chore title
+    private String holder; // Chore holder
+    private String notification; // Chore notification
+    private String doer; // Chore doer
+    private Boolean status; // Chore status (done or not)
+
+    // Getters and setters for the fields
 
     public String get_id() {
         return _id;
@@ -16,24 +24,12 @@ public class User {
         this._id = _id;
     }
 
-    private String id;
-
-    private String title;
-
-    private String holder;
-
-    public String getId() {
-        return _id;
-    }
     public String getTitle() {
         return title;
     }
 
     public void setTitle(String title) {
         this.title = title;
-    }
-    public void setId(String id) {
-        this._id = id;
     }
 
     public String getHolder() {
@@ -60,9 +56,6 @@ public class User {
         this.doer = doer;
     }
 
-    private String notification;
-    private String doer;
-
     public Boolean getStatus() {
         return status;
     }
@@ -71,17 +64,13 @@ public class User {
         this.status = status;
     }
 
-    private Boolean status;
-
-    // Constructors, getters, setters, and other methods as needed
-
+    // Override the toString() method to provide a formatted string representation of the User object
     @Override
     public String toString() {
-        return  "Title & ID: '" + title + " & " + _id + "'\n" +
+        return "Title & ID: '" + title + " & " + _id + "'\n" +
                 "Holder: '" + holder + "',\n" +
                 "Notification: '" + notification + "',\n" +
                 "Doer: '" + doer + "'\n" +
                 "Chore Done?: '" + status + "'\n";
     }
-
 }

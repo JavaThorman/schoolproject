@@ -17,7 +17,7 @@ public class MessageController {
     @PostMapping(path = "/publish", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> publish(@RequestBody String message) {
         try {
-            kafkaTemplate.send("user_notification_updates_json", message); // Replace "your-topic-name" with your actual topic name
+            kafkaTemplate.send("user_notification_updates_json", message);
             return ResponseEntity.ok("Message sent to the Topic");
         } catch (Exception e) {
             e.printStackTrace(); // Log the exception for debugging

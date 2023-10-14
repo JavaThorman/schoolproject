@@ -14,6 +14,7 @@ public class MessageMenuFrontend {
 
     public void run(MessageMenuBackend backend) {
         while (true) {
+
             System.out.println("Menu:");
             System.out.println("1. Send Message");
             System.out.println("2. Read Messages");
@@ -22,7 +23,7 @@ public class MessageMenuFrontend {
             System.out.print("Enter your choice: ");
 
             int choice = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
+            scanner.nextLine();
 
             switch (choice) {
                 case 1:
@@ -54,7 +55,7 @@ public class MessageMenuFrontend {
         System.out.print("Doer: \n");
         String doer = scanner.nextLine();
 
-        // You should pass the correct parameters to the sendMessage method
+
         backend.sendMessage(title, holder, notification, doer, false);
     }
 
